@@ -1,0 +1,2 @@
+bin/drone-test root/drone-test
+files/systemd/drone-test.service lib/systemd/system

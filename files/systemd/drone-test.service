@@ -1,0 +1,15 @@
+[Unit]
+Description=Testing drone deb service
+StartLimitIntervalSec=0
+
+[Service]
+Type=oneshot
+ExecStart=/root/drone-test/drone-test
+Restart=always
+RestartSec=2
+KillMode=process
+LimitNOFILE=50000
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,9 @@
+#!/usr/bin/make -f
+
+export GOCACHE=$(shell mktemp -d /tmp/gocache-XXXX)
+export GO111MODULE=on
+
+%:
+	dh $@
+override_dh_installsystemd:
+	dh_installsystemd --no-restart-after-upgrade

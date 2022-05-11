@@ -1,0 +1,5 @@
+
+version=3
+opts=filenamemangle=s/.+\/v?(\d\S*)\.tar\.gz/hive-vm-manager-\$1\.tar\.gz/,\
+uversionmangle=s/(\d)[_\.\-\+]?(RC|rc|pre|dev|beta|alpha)[.]?(\d*)$/\$1~\$2\$3/ \
+  https://github.com/hive-io/hive-vm-manager/tags .*/v?(\d\S*)\.tar\.gz
