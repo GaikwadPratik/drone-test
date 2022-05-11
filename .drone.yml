@@ -1,0 +1,10 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: build
+  image: registry.hub.docker.com/library/golang
+  commands:
+  - docker build -t drone-test .
+  - docker run drone-test
