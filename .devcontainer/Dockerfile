@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-LABEL Name=dronetest Version=0.0.1
+LABEL Name=drone-test Version=0.0.1
 RUN apt-get update \
     && apt -y upgrade \
     && apt -y install \

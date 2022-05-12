@@ -10,7 +10,7 @@ steps:
   purge: true
   commands:
   - docker build -t drone-test .
-  - docker run drone-test
+  - docker run -d -name drone-test drone-test
   dry_run: true
 
 - name: build package
