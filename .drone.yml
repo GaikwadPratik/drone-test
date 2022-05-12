@@ -5,10 +5,11 @@ name: default
 steps:
 - name: build
   image: plugins/docker
-  dockerfile: .devcontainer/Dockerfile
+  settings:
+    dockerfile: .devcontainer/Dockerfile
   purge: true
   commands:
-  - docker build -t drone-test .
+  - docker build -f .devcontainer/Dockerfile -t drone-test .
   - docker run -d -name drone-test drone-test
   dry_run: true
 
