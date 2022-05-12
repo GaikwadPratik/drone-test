@@ -10,7 +10,7 @@ steps:
     debug: true
   purge: true
   commands:
-  - ls -al
+  - docker ps -a
   - docker build -f .devcontainer/Dockerfile -t drone-test .
   - docker run -d -name drone-test drone-test
   dry_run: true
