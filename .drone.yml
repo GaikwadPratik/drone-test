@@ -4,13 +4,12 @@ name: default
 
 steps:
 - name: build
-  image: docker:dind
+  image: plugins/docker
   settings:
     dockerfile: .devcontainer/Dockerfile
     debug: true
   purge: true
   commands:
-  - sleep 25 # give docker enough time to start
   - docker ps -a
   - docker build -f .devcontainer/Dockerfile -t drone-test .
   - docker run -d -name drone-test drone-test
