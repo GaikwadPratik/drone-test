@@ -4,13 +4,13 @@ name: default
 
 steps:
 - name: build
-  image: docker:dind
-  privileged: true
+  image: plugins/docker
   settings:
     dockerfile: .devcontainer/Dockerfile
     debug: true
   purge: true
   commands:
+  - ls -al
   - docker build -f .devcontainer/Dockerfile -t drone-test .
   - docker run -d -name drone-test drone-test
   dry_run: true
