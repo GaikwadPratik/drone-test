@@ -10,7 +10,12 @@ steps:
   commands:
   - docker build -t drone-test .
   - docker run drone-test
-  - docker exec "dpkg-buildpackage -b"
+  dry_run: true
+
+- name: build package
+  image: drone-test
+  commands:
+  - dpkg-buildpackage -b
 
 trigger:
   event:
