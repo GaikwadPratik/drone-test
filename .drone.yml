@@ -4,7 +4,9 @@ name: default
 
 steps:
 - name: build
-  image: registry.hub.docker.com/library/golang
+  image: plugins/docker
+  dockerfile: .devcontainer/Dockerfile
+  purge: true
   commands:
   - docker build -t drone-test .
   - docker run drone-test
