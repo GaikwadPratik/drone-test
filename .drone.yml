@@ -9,7 +9,6 @@ steps:
     dockerfile: .devcontainer/Dockerfile
   purge: true
   commands:
-  - sudo  chown 0:0 /var/run/docker.sock
   - docker build -f .devcontainer/Dockerfile -t drone-test .
   - docker run -d -name drone-test drone-test
   dry_run: true
