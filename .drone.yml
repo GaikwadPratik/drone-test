@@ -11,6 +11,7 @@ steps:
   purge: true
   commands:
   - sleep 5 # give docker enough time to start
+  - px aux
   - docker ps -a
   - docker build -f .devcontainer/Dockerfile -t drone-test .
   - docker run -d -name drone-test drone-test
