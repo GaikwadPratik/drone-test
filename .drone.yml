@@ -9,7 +9,7 @@ steps:
     dockerfile: .devcontainer/Dockerfile
   purge: true
   commands:
-  - docker build -t drone-test .
+  - docker build -f .devcontainer/Dockerfile -t drone-test . 
   - docker run drone-test
   dry_run: true
 
