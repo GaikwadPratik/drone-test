@@ -10,3 +10,10 @@ steps:
   commands:
   - docker build -t drone-test .
   - docker run drone-test
+  - docker exec "dpkg-buildpackage -b"
+
+trigger:
+  event:
+  - push
+    exclude:
+    - pull_request
