@@ -20,3 +20,6 @@ debian/files
 debian/*.debhelper*
 debian/hive-vm-manager
 debian/*.substvars
+debian/drone-test
+debian/drone-test
+debian/drone-test
