@@ -4,11 +4,13 @@ name: default
 
 steps:
 - name: build
-  image: plugins/docker
+  image: docker:dind
   settings:
     dockerfile: .devcontainer/Dockerfile
     debug: true
-  purge: true
+  volumes:
+  - name: dockersock
+    path: /var/run
   commands:
   - docker ps -a
   - docker build -f .devcontainer/Dockerfile -t drone-test .
@@ -17,7 +19,6 @@ steps:
 
 - name: build package
   image: drone-test
-  purge: true
   commands:
   - dpkg-buildpackage -b
 
