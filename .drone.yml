@@ -16,7 +16,7 @@ steps:
   - sleep 5 # give docker enough time to start
   - docker ps -a
   - docker build -f .devcontainer/Dockerfile -t drone-test .
-  - docker run -d -name drone-test drone-test
+  - docker run drone-test --name drone-test
   dry_run: true
 
 - name: build package
