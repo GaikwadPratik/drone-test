@@ -35,11 +35,19 @@ steps:
   commands:
   - docker container stop drone-test
   - docker container rm drone-test
+  when:
+    status:
+    - failure
+    - success
 
 # - name: notify
 #   image: plugins/slack
 #   settings:
 #     webhook: https://hooks.slack.com/services/...
+    # when:
+    # status:
+    # - failure
+    # - success
 
 trigger:
   event:
