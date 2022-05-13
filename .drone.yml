@@ -8,6 +8,7 @@ steps:
   settings:
     debug: true
   purge: true
+  privileged: true
   volumes:
   - name: dockersock
     path: /var/run/docker.sock
