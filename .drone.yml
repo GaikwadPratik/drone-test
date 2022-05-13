@@ -41,8 +41,8 @@ steps:
   failure: ignore
   commands:
   - docker container stop drone-test
-  - docker container rm drone-test
-  - docker image rm drone-test
+  - docker container rm -f drone-test
+  - docker image rm -f drone-test
   when:
     status:
     - failure
