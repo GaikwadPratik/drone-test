@@ -18,6 +18,7 @@ steps:
   dry_run: true
 
 - name: build package
+  pull: never
   image: drone-test
   purge: true
   privileged: true
