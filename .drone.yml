@@ -26,6 +26,7 @@ steps:
   - name: dockersock
     path: /var/run/docker.sock
   commands:
+  - ls /usr/bin/ | grep test
   - ./usr/bin/testenv.sh
   - dpkg-buildpackage -b
   when:
