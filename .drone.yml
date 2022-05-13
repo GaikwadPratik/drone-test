@@ -41,6 +41,7 @@ steps:
   commands:
   - docker container stop drone-test
   - docker container rm drone-test
+  - docker image rm drone-test
   when:
     status:
     - failure
