@@ -21,6 +21,9 @@ steps:
   image: drone-test
   purge: true
   privileged: true
+  volumes:
+  - name: dockersock
+    path: /var/run/docker.sock
   commands:
   - ls -alR
   - dpkg-buildpackage -b
@@ -30,6 +33,9 @@ steps:
 
 - name: cleanup
   image: plugins/docker
+  volumes:
+  - name: dockersock
+    path: /var/run/docker.sock
   privileged: true
   failure: ignore
   commands:
