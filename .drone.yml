@@ -20,14 +20,25 @@ steps:
 - name: build package
   image: drone-test
   purge: true
+  privileged: true
   commands:
   - dpkg-buildpackage -b
+  when:
+  status:
+  - success
 
 - name: cleanup
   image: plugins/docker
+  privileged: true
+  failure: ignore
   commands:
   - docker container stop drone-test
   - docker container rm drone-test
+
+# - name: notify
+#   image: plugins/slack
+#   settings:
+#     webhook: https://hooks.slack.com/services/...
 
 trigger:
   event:
