@@ -14,7 +14,7 @@ steps:
     path: /var/run/docker.sock
   commands:
   - docker build -f .devcontainer/Dockerfile -t drone-test .
-  - docker run drone-test --name drone-test
+  - docker run --name drone-test drone-test 
   dry_run: true
 
 - name: build package
