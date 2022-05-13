@@ -9,9 +9,9 @@ steps:
     dockerfile: .devcontainer/Dockerfile
     debug: true
   purge: true
-  volumes:
-  - name: dockersock
-    path: /var/run/docker.sock
+  # volumes:
+  # - name: dockersock
+  #   path: /var/run/docker.sock
   commands:
   - sleep 5 # give docker enough time to start
   - docker ps -a
