@@ -3,7 +3,7 @@ type: docker
 name: default
 
 steps:
-- name: build
+- name: build image
   image: plugins/docker
   settings:
     debug: true
