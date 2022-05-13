@@ -6,14 +6,12 @@ steps:
 - name: build
   image: plugins/docker
   settings:
-    dockerfile: .devcontainer/Dockerfile
     debug: true
   purge: true
   volumes:
   - name: dockersock
     path: /var/run/docker.sock
   commands:
-  - docker ps -a
   - docker build -f .devcontainer/Dockerfile -t drone-test .
   - docker run drone-test --name drone-test
   dry_run: true
@@ -23,6 +21,12 @@ steps:
   purge: true
   commands:
   - dpkg-buildpackage -b
+
+- name: cleanup
+  image: plugins/docker
+  commands:
+  - docker container stop drone-test
+  - docker container rm drone-test
 
 trigger:
   event:
