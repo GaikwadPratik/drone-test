@@ -12,12 +12,17 @@ services:
       - DRONE_GITHUB_CLIENT_ID=${DRONE_GITHUB_CLIENT_ID}
       - DRONE_GITHUB_CLIENT_SECRET=${DRONE_GITHUB_CLIENT_SECRET}
       - DRONE_RPC_SECRET=${DRONE_RPC_SECRET}
-      - DRONE_SERVER_PROTO=http
-      - DRONE_TLS_AUTOCERT=false
+      - DRONE_SERVER_PROTO=${DRONE_SERVER_PROTO}
       - DRONE_SERVER_HOST=${DRONE_SERVER_HOST}
       - DRONE_USER_CREATE=${DRONE_USER_CREATE}
-      - DRONE_LOGS_DEBUG=true
+      - DRONE_CLEANUP_INTERVAL=${DRONE_CLEANUP_INTERVAL}
+      - DRONE_MAX_PROCS=${DRONE_MAX_PROCS}
+      - DRONE_TLS_AUTOCERT=false
+      - DRONE_LOGS_DEBUG=false
       - DRONE_LOGS_TEXT=true
+      - DRONE_LOGS_COLOR=true
+      # - DRONE_TLS_CERT=${DRONE_TLS_CERT}
+      # - DRONE_TLS_KEY=${DRONE_TLS_KEY}
     ports:
       - "80:80"
       # - "443:443"
@@ -26,7 +31,13 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./drone:/data
-      - /var/lib/drone:/data
+
+  drone-git:
+    container_name: drone-git
+    image: alpine/git
+    restart: unless-stopped
+    depends_on:
+      - drone
 
   drone-runner:
     container_name: drone-runner
@@ -39,7 +50,7 @@ services:
       - DRONE_RPC_HOST=drone:80
       - DRONE_RPC_SECRET=${DRONE_RPC_SECRET}
       - DRONE_RUNNER_NAME="${HOSTNAME}-runner"
-      - DRONE_RUNNER_CAPACITY=1
+      - DRONE_RUNNER_CAPACITY=10
       - DRONE_RUNNER_NETWORKS=drone_net
       - DRONE_DEBUG=true
       - DRONE_TRACE=false
